@@ -1,0 +1,49 @@
+﻿<template name="movies">
+
+
+    <div id="player" style="width:110%;height:130%;background-color:red; position:absolute;left:50px; top:-90px;"></div>
+
+    {{#if ready}}
+    <div class="movieinfo ">
+        <div >
+            <img src="http://image.tmdb.org/t/p/w154/{{currenttrailer.poster_path}}">
+        </div>
+        <div style="margin-top:3px;">
+            <input class="btn btn-primary btn-large " style="width:49%;" type="button" id="prev" value="prev" />
+            <input class="btn btn-primary btn-large " style="width:49%;" type="button" id="next" value="next" />
+
+        </div>
+    </div>
+    {{/if}}
+    <script>
+        // autoplay video
+        function onPlayerReady(event) {
+            Meteor.call("currentmovietrailer");
+        }
+
+        // when video ends
+        function onPlayerStateChange(event) {
+            console.log(event.data);
+            if (event.data === 0) {
+                Meteor.call("nextmovietrailer");
+            }
+        }
+        function onPlayerError(event) {
+            console.log('error');
+            console.log(event.data);
+            Meteor.call("nextmovietrailer");
+        }
+
+    </script>
+
+    <!--{{#each movietrailers}}
+    <div>{{title}}:</div>
+    <div>
+        <img src="http://image.tmdb.org/t/p/w154/{{poster_path}}">
+        <div>video {{#each videoids}}<span>{{key}}, </span> {{/each}}</div>
+        <div>release data {{release_date}}</div>
+        <div>popularity {{popularity}}</div>
+        <div>index {{index}}</div>
+    </div>
+    {{/each}}-->
+</template>

@@ -1,0 +1,10 @@
+﻿.movieinfo {
+    position: absolute;
+    left: 120px;
+    top: 50px;
+    z-index: 1;
+    width: 154px;
+    height: 350px;
+    color:white;
+    text-align:center;
+}

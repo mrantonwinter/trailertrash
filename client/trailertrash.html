@@ -1,0 +1,43 @@
+<head>
+    <title>trailertrash</title>
+    <script src="http://www.youtube.com/player_api"></script>
+</head>
+
+<body >
+    {{> movies}}
+
+    <script>
+
+        // create youtube player
+        var player;
+        function onYouTubePlayerAPIReady() {
+            var ratio = 16 / 9;
+            player = new YT.Player('player', {
+                width: document.body.clientWidth,
+                height: document.body.clientHeight,
+                videoId: 'Y2vy96pDsG8',
+                enablejsapi :1,
+                playerVars: {
+                    rel: 0,
+                    modestbranding: 1,
+                    wmode: 'transparent',
+                    showinfo: 0,
+                    origin:'http://localhost:3000'
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                    'onError': onPlayerError
+
+                }
+            });
+
+
+        }
+
+
+
+    </script>
+
+</body>
+
